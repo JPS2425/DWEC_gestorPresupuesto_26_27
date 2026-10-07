@@ -75,6 +75,29 @@ function anyadirGasto(gasto) {
     gastos.push(gasto);
 }
 
+// 4. borrarGasto
+// Elimina de la variable global "gastos" el gasto cuyo id coincide con el pasado como parámetro.
+// Si no existe un gasto con ese id, no hace nada.
+function borrarGasto(id) {
+    let indice = gastos.findIndex(gasto => gasto.id === id);
+
+    if (indice !== -1) {
+        gastos.splice(indice, 1);
+    }
+}
+
+// 5. calcularTotalGastos
+// Devuelve la suma de todos los gastos creados en la variable global "gastos".
+function calcularTotalGastos() {
+    return gastos.reduce((acumulador, gasto) => acumulador + gasto.valor, 0);
+}
+
+// 6. calcularBalance
+// Devuelve el balance disponible: presupuesto - gastos totales.
+function calcularBalance() {
+    return presupuesto - calcularTotalGastos();
+}
+
 
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.

@@ -52,12 +52,38 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
         }
     };
 
+    // NUEVO: devuelve el texto multilínea con fecha localizada y etiquetas
+    this.mostrarGastoCompleto = function() {
+        let texto = `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\n`;
+        texto += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`;
+        texto += `Etiquetas:\n`;
+        for (let etiqueta of this.etiquetas) {
+            texto += ` - ${etiqueta}\n`;
+        }
+        return texto;
+    };
+
+    // NUEVO: si la fecha no es válida, no se modifica
+    this.actualizarFecha = function(nuevaFecha) {
+        let timestamp = Date.parse(nuevaFecha);
+        if (!isNaN(timestamp)) {
+            this.fecha = timestamp;
+        }
+    };
+
     this.anyadirEtiquetas = function(...nuevasEtiquetas) {
         for (let etiqueta of nuevasEtiquetas) {
             if (!this.etiquetas.includes(etiqueta)) {
                 this.etiquetas.push(etiqueta);
             }
         }
+    };
+
+    // NUEVO: elimina las etiquetas indicadas (si existen)
+    this.borrarEtiquetas = function(...etiquetasABorrar) {
+        this.etiquetas = this.etiquetas.filter(
+            etiqueta => !etiquetasABorrar.includes(etiqueta)
+        );
     };
 
     this.anyadirEtiquetas(...etiquetas);

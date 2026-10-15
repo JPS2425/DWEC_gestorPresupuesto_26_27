@@ -89,7 +89,6 @@ function CrearGasto(descripcion, valor, fecha, ...etiquetas) {
     this.obtenerPeriodoAgrupacion = function(periodo) {
         let d = new Date(this.fecha);
         let anyo = d.getFullYear();
-        // getMonth() devuelve valores de 0 a 11, por lo que sumamos 1 y rellenamos con un cero si es menor de 10
         let mes = String(d.getMonth() + 1).padStart(2, '0');
         let dia = String(d.getDate()).padStart(2, '0');
 
@@ -133,11 +132,59 @@ function calcularBalance() {
 }
 
 function filtrarGastos(opciones = {}) {
-   
+     return gastos.filter(gasto => {
+        // 1. Filtrado por fechaDesde
+        if (opciones.fechaDesde) {
+            let fechaDesdeTs = Date.parse(opciones.fechaDesde);
+            if (!isNaN(fechaDesdeTs) && gasto.fecha < fechaDesdeTs) {
+                return false;
+            }
+        }
+
+        // 2. Filtrado por fechaHasta
+        if (opciones.fechaHasta) {
+            let fechaHastaTs = Date.parse(opciones.fechaHasta);
+            if (!isNaN(fechaHastaTs) && gasto.fecha > fechaHastaTs) {
+                return false;
+            }
+        }
+
+        // 3. Filtrado por valorMinimo
+        if (typeof opciones.valorMinimo === 'number' && gasto.valor < opciones.valorMinimo) {
+            return false;
+        }
+
+        // 4. Filtrado por valorMaximo
+        if (typeof opciones.valorMaximo === 'number' && gasto.valor > opciones.valorMaximo) {
+            return false;
+        }
+
+        // 5. Filtrado por descripcionContiene
+        if (opciones.descripcionContiene) {
+            let descripcionGasto = gasto.descripcion.toLowerCase();
+            let textoBuscar = opciones.descripcionContiene.toLowerCase();
+            if (!descripcionGasto.includes(textoBuscar)) {
+                return false;
+            }
+        }
+
+        // 6. Filtrado por etiquetasTiene 
+        if (Array.isArray(opciones.etiquetasTiene) && opciones.etiquetasTiene.length > 0) {
+            let etiquetasBuscadas = opciones.etiquetasTiene.map(e => String(e).toLowerCase());
+            let etiquetasGasto = gasto.etiquetas.map(e => String(e).toLowerCase());
+
+            let tieneAlguna = etiquetasBuscadas.some(e => etiquetasGasto.includes(e));
+            if (!tieneAlguna) {
+                return false;
+            }
+        }
+
+        return true;
+    });
 }
 
 function agruparGastos(periodo) { 
-    
+
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.

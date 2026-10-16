@@ -183,7 +183,7 @@ function filtrarGastos(opciones = {}) {
     });
 }
 
-function agruparGastos(periodo) { 
+function agruparGastos(periodo, etiquetas = [], fechaDesde, fechaHasta) { 
     let opcionesFiltro = {
         etiquetasTiene: etiquetas,
         fechaDesde: fechaDesde,

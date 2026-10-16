@@ -183,11 +183,11 @@ function filtrarGastos(opciones = {}) {
     });
 }
 
-function agruparGastos(periodo, etiquetas = [], fechaDesde, fechaHasta) { 
+function agruparGastos(periodo = "mes", etiquetas = [], fechaDesde, fechaHasta) { 
     let opcionesFiltro = {
         etiquetasTiene: etiquetas,
         fechaDesde: fechaDesde,
-        fechaHasta: fechaHasta
+        fechaHasta: fechaHasta || new Date().toISOString()
     };
 
     let gastosFiltrados = filtrarGastos(opcionesFiltro);

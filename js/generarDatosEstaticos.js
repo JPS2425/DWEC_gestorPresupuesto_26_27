@@ -55,7 +55,7 @@ mostrarListado(
     "listado-gastos-filtrado-3",
     gestionPresupuesto.filtrarGastos({
         valorMinimo: 200,
-        etiquetas: ["seguros"],
+        etiquetasTiene: ["seguros"],
     })
 );
 
@@ -63,6 +63,25 @@ mostrarListado(
     "listado-gastos-filtrado-4",
     gestionPresupuesto.filtrarGastos({
         valorMaximo: 50,
-        etiquetas: ["comida", "transporte"],
+        etiquetasTiene: ["comida", "transporte"],
     })
+);
+
+// agrupaciones
+gestionPresupuestoWeb.mostrarGastosAgrupadosWeb(
+    "agrupacion-dia",
+    gestionPresupuesto.agruparGastos("dia"),
+    "dia"
+);
+
+gestionPresupuestoWeb.mostrarGastosAgrupadosWeb(
+    "agrupacion-mes",
+    gestionPresupuesto.agruparGastos("mes"),
+    "mes"
+);
+
+gestionPresupuestoWeb.mostrarGastosAgrupadosWeb(
+    "agrupacion-anyo",
+    gestionPresupuesto.agruparGastos("anyo"),
+    "anyo"
 );

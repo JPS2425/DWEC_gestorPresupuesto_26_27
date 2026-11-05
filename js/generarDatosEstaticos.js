@@ -2,7 +2,7 @@ import * as gestionPresupuesto from './gestionPresupuesto.js';
 import * as gestionPresupuestoWeb from './gestionPresupuestoWeb.js';
 
 //
-gestionPresupuestoWeb.actualizarPresupuesto(1500);
+gestionPresupuesto.actualizarPresupuesto(1500);
 gestionPresupuestoWeb.mostrarDatoEnId(
     "presupuesto", gestionPresupuesto.mostrarPresupuesto()
 );
@@ -18,7 +18,7 @@ const gastos = [
 ];
 
 for  (const gasto of gastos) {
-    gestionPresupuesto.anyadirGasto("gastos", gasto);
+    gestionPresupuesto.anyadirGasto( gasto);
 }
 
 // mostrar gastos totales y balance
@@ -29,3 +29,11 @@ gestionPresupuestoWeb.mostrarDatoEnId(
     "balance-total", gestionPresupuesto.calcularBalance()
 );
 
+// listados
+function mostrarListado(idElemento, lista) {
+    for (const gasto of lista) {
+        gestionPresupuestoWeb.mostrarGastoWeb(idElemento, gasto);
+    }
+}
+
+mostrarListado("listado-gastos-completo", gestionPresupuesto.listarGastos());

@@ -37,3 +37,32 @@ function mostrarListado(idElemento, lista) {
 }
 
 mostrarListado("listado-gastos-completo", gestionPresupuesto.listarGastos());
+
+mostrarListado(
+    "listado-gastos-filtrado-1",
+    gestionPresupuesto.filtrarGastos({
+        fechaDesde: "2021-09-01",
+        fechaHasta: "2021-09-30",
+    })
+);
+
+mostrarListado(
+  "listado-gastos-filtrado-2",
+  gestionPresupuesto.filtrarGastos({ valorMinimo: 50 })
+);
+
+mostrarListado(
+    "listado-gastos-filtrado-3",
+    gestionPresupuesto.filtrarGastos({
+        valorMinimo: 200,
+        etiquetas: ["seguros"],
+    })
+);
+
+mostrarListado(
+    "listado-gastos-filtrado-4",
+    gestionPresupuesto.filtrarGastos({
+        valorMaximo: 50,
+        etiquetas: ["comida", "transporte"],
+    })
+);

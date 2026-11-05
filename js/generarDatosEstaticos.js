@@ -83,5 +83,5 @@ gestionPresupuestoWeb.mostrarGastosAgrupadosWeb(
 gestionPresupuestoWeb.mostrarGastosAgrupadosWeb(
     "agrupacion-anyo",
     gestionPresupuesto.agruparGastos("anyo"),
-    "anyo"
+    "año"
 );

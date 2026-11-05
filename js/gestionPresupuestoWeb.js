@@ -35,7 +35,7 @@ function mostrarGastoWeb(idElemento, gasto) {
 
 function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     const contenedor = document.getElementById(idElemento);
-    const nombres = {mes: "mes", dia: "día", año: "año"};
+    const nombres = {mes: "mes", dia: "día", anyo: "año"};
 
     const divAgrup = document.createElement("div");
     divAgrup.classList.add("agrupacion");

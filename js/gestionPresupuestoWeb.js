@@ -31,7 +31,23 @@ function mostrarGastoWeb(idElemento, gasto) {
         etiquetas.append(span);
     }
 
-    divGasto.append(descripcion, fecha, valor, etiquetas);
+    const botonEditar = document.createElement("button");
+    botonEditar.type = "button";
+    botonEditar.classList.add("gasto-editar");
+    botonEditar.textContent = "Editar";
+    const manejadorEditar = new EditarHandle();
+    manejadorEditar.gasto = gasto;
+    botonEditar.addEventListener("click", manejadorEditar);
+
+    const botonBorrar = document.createElement("button");
+    botonBorrar.type = "button";
+    botonBorrar.classList.add("gasto-borrar");
+    botonBorrar.textContent = "Borrar";
+    const manejadorBorrar = new BorrarHandle();
+    manejadorBorrar.gasto = gasto;
+    botonBorrar.addEventListener("click", manejadorBorrar);
+
+    divGasto.append(descripcion, fecha, valor, etiquetas, botonEditar, botonBorrar);
     contenedor.append(divGasto);
 }
 
@@ -63,6 +79,10 @@ function mostrarGastosAgrupadosWeb(idElemento, agrup, periodo) {
     }
 
     contenedor.append(divAgrup);
+}
+
+function repintar()   {
+
 }
 
 export   { 

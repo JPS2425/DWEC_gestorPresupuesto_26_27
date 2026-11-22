@@ -99,6 +99,17 @@ function actualizarPresupuestoWeb() {
     repintar();
 }
 
+function nuevoGastoWeb() {
+    const descripcion = prompt("Descripción del gasto:");
+    const valor = Number(prompt("Valor del gasto:"));
+    const fecha = prompt("Fecha del gasto (yyyy-mm-dd):");
+    const etiquetas = prompt("Etiquetas (separadas por comas):").split(",");
+
+    const gasto = new gestionPresupuesto.CrearGasto(descripcion, valor, fecha, ...etiquetas);
+    gestionPresupuesto.anyadirGasto(gasto);
+    repintar();
+}
+
 export   { 
     mostrarDatoEnId,
     mostrarGastoWeb,

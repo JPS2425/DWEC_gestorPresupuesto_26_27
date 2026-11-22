@@ -146,6 +146,14 @@ function BorrarEtiquetasHandle() {
     };
 }
 
+document
+    .getElementById("actualizarpresupuesto")
+    .addEventListener("click", actualizarPresupuestoWeb);
+
+document
+    .getElementById("anyadirgasto")
+    .addEventListener("click", nuevoGastoWeb);
+    
 export   { 
     mostrarDatoEnId,
     mostrarGastoWeb,
